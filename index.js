@@ -50,7 +50,7 @@ bot.on("text", (ctx) => {
         ctx.reply("Birodar, reply qilishni unutdingiz shekilli🤨");
     } else {
         const answer = ctx.message.text;
-        const answers = ["0", "1", "2", "3"];
+        const answers = ["1", "2", "3", "4"];
         if (!answers.includes(answer)) {
             ctx.reply(
                 "Nimalar qilyapsize😕. Esiz pasmi yo ataylab asabimmi buzmoqchimisiz🤨?"
@@ -59,7 +59,7 @@ bot.on("text", (ctx) => {
             axios
                 .post(process.env.QUIZ_UPDATE, {
                     id: ctx.message.reply_to_message.message_id,
-                    answer: answer,
+                    answer: parseInt(answer) - 1,
                 })
                 .then((response) => {
                     if (response.data.success) {
